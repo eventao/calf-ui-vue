@@ -1,12 +1,14 @@
 <template>
   <div class="hello">
-    <c-carousel :height="'400px'">
-      <c-carousel-item v-for="(item,i) of carouses" :key="i">
-        <div class="carousel-i">
-          <img :src="item.img" alt="">
-        </div>
-      </c-carousel-item>
-    </c-carousel>
+    <div class="carousel-w">
+      <c-carousel :height="'400px'">
+        <c-carousel-item v-for="(item,i) of carouses" :key="i">
+          <div class="carousel-i">
+            <img :src="item.img" alt="">
+          </div>
+        </c-carousel-item>
+      </c-carousel>
+    </div>
   </div>
 </template>
 
@@ -38,6 +40,11 @@
 
 <style scoped lang="less">
   .hello{
+    .carousel-w{
+      width:800px;
+      height:auto;
+      margin:0 auto;
+    }
     .carousel-i{
       width:100%;
       height:400px;
