@@ -45,13 +45,9 @@
           el.$el.style.zIndex = i + 1;
         });
         this.total = that.$children.length;
-
-        if (this.interval > 0) {
-          this.runAuto();
-        }
         this.setCarouselChange();
       },
-      next(cb) {
+      next() {
         this.resetPrev();
         if (this.currentIndex < this.total - 1) {
           this.currentIndex++;
@@ -60,9 +56,6 @@
         }
         this.setCarouselChange();
         this.$emit('input', this.currentIndex);
-        if(cb && typeof cb === 'function')cb();
-        clearTimeout(this.carouselTimeout);
-        this.runAuto();
       },
       prev() {
         this.resetPrev();
@@ -73,10 +66,6 @@
         }
         this.setCarouselChange();
         this.$emit('input', this.currentIndex);
-
-        clearTimeout(this.carouselTimeout);
-        this.runAuto();
-
       },
       resetPrev() {
         let that = this;
@@ -110,6 +99,11 @@
         nEle.style.opacity = 0.6;
         nEle.style.zIndex = 2;
 
+        if (this.interval > 0) {
+          clearTimeout(this.carouselTimeout);
+          this.runAuto();
+        }
+
       },
       runAuto() {
         this.carouselTimeout = setTimeout(() => {
@@ -121,11 +115,19 @@
       carouseClick(e){
         let param = e;
         let w = this.$refs.carousel.clientWidth;
-        if(param.layerX / w > 0.6){
+
+        if(param.layerX / w > 0.8){
           this.next();
-        }else if(param.layerX / w < 0.4){
+        }else if(param.layerX / w < 0.2){
           this.prev();
         }
+      }
+    },
+    watch:{
+      value(curr){
+        this.currentIndex = curr;
+        this.resetPrev();
+        this.setCarouselChange();
       }
     }
   }
