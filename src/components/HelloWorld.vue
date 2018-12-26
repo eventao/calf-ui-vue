@@ -3,7 +3,7 @@
     <c-carousel :height="'400px'">
       <c-carousel-item v-for="(item,i) of carouses" :key="i">
         <div class="carousel-i">
-          {{item}}
+          <img :src="item.img" alt="">
         </div>
       </c-carousel-item>
     </c-carousel>
@@ -19,10 +19,13 @@
     data() {
       return {
         carouses:[
-          '第一屏',
-          '第二屏',
-          '第三屏',
-          '第四屏',
+          {img:require('../assets/images/gd318-1.jpg')},
+          {img:require('../assets/images/gd318-2.jpg')},
+          {img:require('../assets/images/gd318-3.jpg')},
+          {img:require('../assets/images/gd318-4.jpg')},
+          {img:require('../assets/images/gd318-5.jpg')},
+          {img:require('../assets/images/gd318-6.jpg')},
+          {img:require('../assets/images/gd318-7.jpg')},
         ],
       }
     },
@@ -43,7 +46,7 @@
       justify-content: center;
       align-items: center;
       color:#fff;
-      background-color:rgba(0,53,6,1);
+      background-color: rgb(53, 52, 52);
     }
   }
 </style>
